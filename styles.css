@@ -494,6 +494,41 @@ body {
     padding-left: 1rem;
 }
 
+.has-preview {
+    position: relative;
+    cursor: help;
+    text-decoration: underline dotted rgba(0, 255, 204, 0.4);
+}
+
+.hover-preview {
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.8);
+    width: 350px;
+    height: auto;
+    border: 2px solid var(--val-red);
+    box-shadow: 0 0 30px rgba(255, 70, 85, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 1000;
+    border-radius: 4px;
+}
+
+.has-preview:hover .hover-preview {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    bottom: 130%;
+}
+
+@media (max-width: 768px) {
+    .hover-preview {
+        width: 280px;
+        bottom: 160%;
+    }
+}
+
 /* Testimonials */
 .testimonials-section {
     padding: 5rem 5%;
