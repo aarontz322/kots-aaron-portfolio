@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kots Aaron | VALORANT Portfolio</title>
+    <meta name="description" content="High-level Valorant coaching. Tactical mastery, VOD reviews, and aim training for serious climbers.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- GSAP for Interactive Gallery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+</head>
+<body>
+    <div class="crt-overlay"></div>
+    <div class="grid-bg"></div>
+    <canvas id="vine-canvas"></canvas>
+
+    <nav class="glitch-nav">
+        <div class="logo" data-text="KOTS AARON">KOTS AARON</div>
+        <canvas id="particle-canvas"></canvas>
+        <div class="nav-links">
+            <a href="#services">[SERVICES]</a>
+            <a href="#book" class="cta-button">INITIATE_COMMS</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="rank-badge">IMMORTAL 3</div>
+            <h1 class="hero-title glitch" data-text="STOP PLAYING">STOP PLAYING</h1>
+            <h1 class="hero-title glitch-alt" data-text="START WINNING">START WINNING</h1>
+            <p class="hero-desc">"There's always something that you can learn and something you can teach." — High-level tactical coaching and team management for serious contenders.</p>
+            <div class="hero-actions">
+                <a href="#book" class="btn-primary btn-large">BOOK A SESSION //</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="crosshair-element"></div>
+            <div class="stat-box float-1">
+                <span class="stat-val">30%</span>
+                <span class="stat-label">HS RATE</span>
+            </div>
+            <div class="stat-box float-2">
+                <span class="stat-val">1.24</span>
+                <span class="stat-label">K/D/A</span>
+            </div>
+        </div>
+    </header>
+
+    <section id="championships" class="championships-section">
+        <h2 class="section-title">PLAYER EXPERIENCE</h2>
+        <div class="championship-display">
+            <div class="champ-card">
+                <div class="champ-header">
+                    <span class="champ-tag">BACK-TO-BACK</span>
+                    <h3>BING CHILLINGS</h3>
+                </div>
+                <div class="champ-stats">
+                    <div class="stat">
+                        <span class="label">SEASON 01</span>
+                        <span class="value">CHAMPION</span>
+                    </div>
+                    <div class="stat">
+                        <span class="label">SEASON 02</span>
+                        <span class="value">CHAMPION</span>
+                    </div>
+                </div>
+                <p class="champ-desc">Dominating the Accenture Games Club Valorant tournament Season 1 and 2 with a flawless back-to-back championship run in 2023.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements" class="achievements-section">
+        <h2 class="section-title">COACHING_LOGS</h2>
+        <div class="achievement-list">
+            <div class="achievement-item">
+                <span class="ach-date">2025 // SPLIT 2</span>
+                <span class="ach-title">VALORANT GAME CHANGERS SEA</span>
+                <span class="ach-result">23RD PLACE // COACH FOR ARVITHAR AELORIA</span>
+            </div>
+            <div class="achievement-item">
+                <span class="ach-date">WINTER CLASH</span>
+                <span class="ach-title">HARU ESPORTS</span>
+                <span class="ach-result">5TH PLACE // COACH FOR STELLAR BOREALIS</span>
+            </div>
+            <div class="achievement-item">
+                <span class="ach-date">2025 // SPLIT 1</span>
+                <span class="ach-title">VALORANT GAME CHANGERS SEA</span>
+                <span class="ach-result">46TH PLACE // COACH FOR DOMINARI</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="squad" class="squad-section">
+        <h2 class="section-title">FORMER_PLAYERS</h2>
+        <div class="squad-container">
+            <div class="agent-card" data-index="01">
+                <img src="characters/Nyanis.jpg" alt="Nyanis">
+                <div class="agent-info">
+                    <span class="agent-tag">PLAYER</span>
+                    <h3>NYANIS</h3>
+                </div>
+            </div>
+            <div class="agent-card" data-index="02">
+                <img src="characters/Fuwa.jpg" alt="Fuwa">
+                <div class="agent-info">
+                    <span class="agent-tag">PLAYER</span>
+                    <h3>FUWA</h3>
+                </div>
+            </div>
+            <div class="agent-card" data-index="03">
+                <img src="characters/Mav.jpg" alt="Mav">
+                <div class="agent-info">
+                    <span class="agent-tag">PLAYER</span>
+                    <h3>MAV</h3>
+                </div>
+            </div>
+            <div class="agent-card" data-index="04">
+                <img src="characters/Xia.jpg" alt="Xia">
+                <div class="agent-info">
+                    <span class="agent-tag">PLAYER</span>
+                    <h3>XIA</h3>
+                </div>
+            </div>
+            <div class="agent-card expanded" data-index="05">
+                <img src="characters/Grey.jpg" alt="Grey">
+                <div class="agent-info">
+                    <span class="agent-tag">PLAYER</span>
+                    <h3>GREY</h3>
+                </div>
+            </div>
+            <div class="agent-card" data-index="06">
+                <img src="characters/Yuki.jpg" alt="Yuuki">
+                <div class="agent-info">
+                    <span class="agent-tag">PLAYER</span>
+                    <h3>YUUKI</h3>
+                </div>
+            </div>
+            <div class="agent-card" data-index="07">
+                <img src="characters/Jeanrine.jpg" alt="Nicole">
+                <div class="agent-info">
+                    <span class="agent-tag">PLAYER</span>
+                    <h3>NICOLE</h3>
+                </div>
+            </div>
+            <div class="agent-card" data-index="08">
+                <img src="characters/Jem.jpg" alt="Jem">
+                <div class="agent-info">
+                    <span class="agent-tag">PLAYER</span>
+                    <h3>JEM</h3>
+                </div>
+            </div>
+            <div class="agent-card" data-index="09">
+                <img src="characters/Rae.jpg" alt="Rae">
+                <div class="agent-info">
+                    <span class="agent-tag">PLAYER</span>
+                    <h3>RAE</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services-section">
+        <h2 class="section-title">TRAINING_MODULES</h2>
+        
+        <div class="service-grid">
+            <div class="service-card">
+                <div class="card-header">
+                    <span class="card-num">01</span>
+                    <h3>VOD REVIEW</h3>
+                </div>
+                <p>Frame-by-frame analysis of your worst matches. Identifying bad habits, poor crosshair placement, and macro mistakes.</p>
+                <div class="card-footer">$40 / HR</div>
+            </div>
+            
+            <div class="service-card highlight">
+                <div class="card-header">
+                    <span class="card-num">02</span>
+                    <h3>LIVE COACHING</h3>
+                </div>
+                <p>Real-time comms via Discord. I back-seat your ranked games and fix decision-making under pressure.</p>
+                <div class="card-footer">$60 / HR</div>
+            </div>
+
+            <div class="service-card">
+                <div class="card-header">
+                    <span class="card-num">03</span>
+                    <h3>AIM / MECH LAB</h3>
+                </div>
+                <p>Custom Aimlabs routines, movement mechanics (deadzoning, strafing), and warmup optimization.</p>
+                <div class="card-footer">$30 / HR</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <h2 class="section-title">SQUAD_MEMORIES</h2>
+        <div class="gallery-wrapper">
+            <div id="image-gallery-container" class="gallery-main">
+                <!-- SVG Gallery will be injected here via gallery.js -->
+            </div>
+            <div class="gallery-controls">
+                <button id="prev-gallery" class="gallery-nav-btn prev" aria-label="Previous Image">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button id="next-gallery" class="gallery-nav-btn next" aria-label="Next Image">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials-section">
+        <h2 class="section-title">COACHING_FEEDBACK</h2>
+        <div class="testimonial-slider-container">
+            <div class="testimonial-track">
+                <!-- Original Set -->
+                <div class="testimonial-card">
+                    <p>"Thank you @Kots! Sa advise and sa free tutorial!! I'll make sure to comeback pag na apply ko na lahat ng advise 🙂 Salamat again bossing!!!"</p>
+                    <div class="user-info">
+                        <span class="user-avatar">H</span>
+                        <span class="user-name">Hirayaaa</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Thank you po sa guide hihi kaso minsan di ko nasusunod yung naituro mo saken nakakalimutan ko ng a liitle bit pero na a apply ko siya sa game at hindi na po madalas matalo sa game thank you po🥺🫶🏻"</p>
+                    <div class="user-info">
+                        <span class="user-avatar">Y</span>
+                        <span class="user-name">Yumiko</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Thank you po Sir @Kots, for your valuable advice. I’ve learned a lot from your training, especially about proper strafing techniques po. Your guidance has helped me identify my weaknesses and improve my skills."</p>
+                    <div class="user-info">
+                        <span class="user-avatar">T</span>
+                        <span class="user-name">TIMMIE</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Really appreciate ung effort you've been putting into helping me improve in Valorant and others na din. I’m definitely noticing improvements in my gameplay thanks to your coaching."</p>
+                    <div class="user-info">
+                        <span class="user-avatar">V</span>
+                        <span class="user-name">Vii</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"His coaching style is highly effective. He is incredibly detail-oriented, always breaking down each aspect of the game to help me understand both the big picture and the finer points... His feedback is constructive and clear."</p>
+                    <div class="user-info">
+                        <span class="user-avatar">G</span>
+                        <span class="user-name">Gom</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Coach really watches your gameplay and notes what you need to improve. Hindi sya keme-keme lang 😂 Mabait and he effectively communicates and shows you your weak points. The exercises he wants you to practice are effective."</p>
+                    <div class="user-info">
+                        <span class="user-avatar">K</span>
+                        <span class="user-name">Kaeri</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Thank you for all the advices and techniques/tips regarding to the game. I had actually fun during our coaching session. He is easy to talk to and you won't feel pressure or intimidated."</p>
+                    <div class="user-info">
+                        <span class="user-avatar">S</span>
+                        <span class="user-name">Sylvie</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"I have learned so much from the coaching session, and I am applying it to my routineee! Thank you very much for this opportunity... He teaches in a calm manner so it feels like a safe space."</p>
+                    <div class="user-info">
+                        <span class="user-avatar">I</span>
+                        <span class="user-name">Izanami</span>
+                    </div>
+                </div>
+                <!-- Duplicate Set for Loop -->
+                <div class="testimonial-card">
+                    <p>"Thank you @Kots! Sa advise and sa free tutorial!! I'll make sure to comeback pag na apply ko na lahat ng advise 🙂 Salamat again bossing!!!"</p>
+                    <div class="user-info">
+                        <span class="user-avatar">H</span>
+                        <span class="user-name">Hirayaaa</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Thank you po sa guide hihi kaso minsan di ko nasusunod yung naituro mo saken nakakalimutan ko ng a liitle bit pero na a apply ko siya sa game at hindi na po madalas matalo sa game thank you po🥺🫶🏻"</p>
+                    <div class="user-info">
+                        <span class="user-avatar">Y</span>
+                        <span class="user-name">Yumiko</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Thank you po Sir @Kots, for your valuable advice. I’ve learned a lot from your training, especially about proper strafing techniques po. Your guidance has helped me identify my weaknesses and improve my skills."</p>
+                    <div class="user-info">
+                        <span class="user-avatar">T</span>
+                        <span class="user-name">TIMMIE</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Really appreciate ung effort you've been putting into helping me improve in Valorant and others na din. I’m definitely noticing improvements in my gameplay thanks to your coaching."</p>
+                    <div class="user-info">
+                        <span class="user-avatar">V</span>
+                        <span class="user-name">Vii</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"His coaching style is highly effective. He is incredibly detail-oriented, always breaking down each aspect of the game to help me understand both the big picture and the finer points... His feedback is constructive and clear."</p>
+                    <div class="user-info">
+                        <span class="user-avatar">G</span>
+                        <span class="user-name">Gom</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Coach really watches your gameplay and notes what you need to improve. Hindi sya keme-keme lang 😂 Mabait and he effectively communicates and shows you your weak points. The exercises he wants you to practice are effective."</p>
+                    <div class="user-info">
+                        <span class="user-avatar">K</span>
+                        <span class="user-name">Kaeri</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Thank you for all the advices and techniques/tips regarding to the game. I had actually fun during our coaching session. He is easy to talk to and you won't feel pressure or intimidated."</p>
+                    <div class="user-info">
+                        <span class="user-avatar">S</span>
+                        <span class="user-name">Sylvie</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"I have learned so much from the coaching session, and I am applying it to my routineee! Thank you very much for this opportunity... He teaches in a calm manner so it feels like a safe space."</p>
+                    <div class="user-info">
+                        <span class="user-avatar">I</span>
+                        <span class="user-name">Izanami</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="cyber-footer">
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span>KOTS AARON // VIRTUAL ASSISTANT //</span>
+                <span>KOTS AARON // VIRTUAL ASSISTANT //</span>
+                <span>KOTS AARON // VIRTUAL ASSISTANT //</span>
+                <span>KOTS AARON // VIRTUAL ASSISTANT //</span>
+                <!-- Seamless Loop Duplicate -->
+                <span>KOTS AARON // VIRTUAL ASSISTANT //</span>
+                <span>KOTS AARON // VIRTUAL ASSISTANT //</span>
+                <span>KOTS AARON // VIRTUAL ASSISTANT //</span>
+                <span>KOTS AARON // VIRTUAL ASSISTANT //</span>
+            </div>
+        </div>
+        <div class="footer-contact">
+            <a href="https://discord.com/users/kotsaaron" class="btn-discord">DISCORD_DIRECT_LINK</a>
+            <div class="social-links">
+                <a href="https://www.facebook.com/kotsaaron" class="social-btn">FB</a>
+                <a href="https://www.instagram.com/kotsaaron" class="social-btn">IG</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="particle-text.js"></script>
+    <script src="vine-background.js"></script>
+    <script src="gallery.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
