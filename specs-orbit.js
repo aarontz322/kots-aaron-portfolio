@@ -4,6 +4,8 @@ import { OrbitControls } from 'https://unpkg.com/three@0.162.0/examples/jsm/cont
 
 /* --- PC SPECS & PERIPHERALS ORBIT ENGINE --- */
 (function() {
+    console.log("Specs Orbit Engine Initializing...");
+    
     const imagesData = [
         { name: "AMD RYZEN 7 7800X3D", url: "specs/7800x3d.png" },
         { name: "MADLIONS MAD60HE", url: "specs/keyboard.png" },
@@ -17,12 +19,14 @@ import { OrbitControls } from 'https://unpkg.com/three@0.162.0/examples/jsm/cont
     const PARTICLE_COUNT = 1500;
     const SPHERE_RADIUS = 9;
     const IMAGE_SIZE = 1.8;
-    const ROTATION_SPEED_Y = 0.003;
 
     let scene, camera, renderer, group, controls;
     const container = document.getElementById('specs-orbit-container');
 
-    if (!container) return;
+    if (!container) {
+        console.error("Specs container not found!");
+        return;
+    }
 
     function createLabelTexture(text) {
         const canvas = document.createElement('canvas');
@@ -33,31 +37,38 @@ import { OrbitControls } from 'https://unpkg.com/three@0.162.0/examples/jsm/cont
         ctx.fillStyle = 'transparent';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
-        ctx.font = 'bold 40px "Teko", sans-serif';
+        // Use a generic sans-serif fallback if Teko isn't ready
+        ctx.font = 'bold 40px "Teko", "Oswald", sans-serif';
         ctx.fillStyle = '#ff4655';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(text, canvas.width / 2, canvas.height / 2);
         
-        const texture = new THREE.CanvasTexture(canvas);
-        return texture;
+        return new THREE.CanvasTexture(canvas);
     }
 
     function init() {
+        console.log("Starting Three.js Scene...");
+        
         scene = new THREE.Scene();
-        camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-        camera.position.z = 18;
+        
+        const width = container.clientWidth || window.innerWidth;
+        const height = container.clientHeight || 600;
+        
+        camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+        camera.position.z = 20;
 
         renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setSize(width, height);
         renderer.setPixelRatio(window.devicePixelRatio);
         container.appendChild(renderer.domElement);
+        
+        console.log("Renderer appended.");
 
-        // --- Orbit Controls ---
         controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
         controls.dampingFactor = 0.05;
-        controls.enableZoom = false; // Keep it focused
+        controls.enableZoom = false;
         controls.autoRotate = true;
         controls.autoRotateSpeed = 1.5;
 
@@ -94,20 +105,18 @@ import { OrbitControls } from 'https://unpkg.com/three@0.162.0/examples/jsm/cont
             const y = (Math.random() - 0.5) * 4; 
 
             const planeGeo = new THREE.PlaneGeometry(IMAGE_SIZE, IMAGE_SIZE);
-            const planeMat = new THREE.MeshBasicMaterial({ 
-                map: textureLoader.load(data.url), 
-                transparent: true,
-                side: THREE.DoubleSide
+            textureLoader.load(data.url, (texture) => {
+                const planeMat = new THREE.MeshBasicMaterial({ 
+                    map: texture, 
+                    transparent: true,
+                    side: THREE.DoubleSide
+                });
+                const mesh = new THREE.Mesh(planeGeo, planeMat);
+                mesh.position.set(x, y, z);
+                mesh.lookAt(new THREE.Vector3(0, y, 0));
+                mesh.rotateY(Math.PI);
+                group.add(mesh);
             });
-            const mesh = new THREE.Mesh(planeGeo, planeMat);
-            
-            mesh.position.set(x, y, z);
-            
-            // Make plane face outward
-            mesh.lookAt(new THREE.Vector3(0, y, 0));
-            mesh.rotateY(Math.PI);
-
-            group.add(mesh);
 
             // Label
             const labelGeo = new THREE.PlaneGeometry(2.5, 0.6);
@@ -123,26 +132,24 @@ import { OrbitControls } from 'https://unpkg.com/three@0.162.0/examples/jsm/cont
             group.add(labelMesh);
         });
 
-        // Resize Handling
         window.addEventListener('resize', () => {
-            camera.aspect = container.clientWidth / container.clientHeight;
+            const w = container.clientWidth;
+            const h = container.clientHeight;
+            camera.aspect = w / h;
             camera.updateProjectionMatrix();
-            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setSize(w, h);
         });
 
+        console.log("Scene setup complete. Starting animation loop.");
         animate();
     }
 
     function animate() {
         requestAnimationFrame(animate);
-        controls.update(); // Required for damping and auto-rotate
-        renderer.render(scene, camera);
+        if (controls) controls.update();
+        if (renderer && scene && camera) renderer.render(scene, camera);
     }
 
-    // Initialize reliably
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-        init();
-    } else {
-        document.addEventListener('DOMContentLoaded', init);
-    }
+    // Force init
+    init();
 })();
