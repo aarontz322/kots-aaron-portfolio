@@ -17,13 +17,10 @@
     const SPHERE_RADIUS = 8;
     const IMAGE_SIZE = 1.8;
 
-    let scene, camera, renderer, group;
+    let scene, camera, renderer, group, controls;
     const container = document.getElementById('specs-orbit-container');
 
     if (!container) return;
-
-    let isDragging = false;
-    let autoRotate = true;
 
     function createLabelTexture(text) {
         const canvas = document.createElement('canvas');
@@ -55,6 +52,17 @@
         renderer.setPixelRatio(window.devicePixelRatio);
         container.appendChild(renderer.domElement);
 
+        if (THREE.OrbitControls) {
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true;
+            controls.dampingFactor = 0.05;
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 1.5;
+            // Allow zoom but constrain it slightly so they don't break the layout
+            controls.minDistance = 5;
+            controls.maxDistance = 40;
+        }
+
         group = new THREE.Group();
         scene.add(group);
 
@@ -83,15 +91,18 @@
             const angle = (i / imagesData.length) * Math.PI * 2;
             const x = (SPHERE_RADIUS + 1) * Math.cos(angle);
             const z = (SPHERE_RADIUS + 1) * Math.sin(angle);
-            const y = (Math.random() - 0.5) * 4; 
+            const y = 0; // Aligned perfectly on the Y-axis
 
             const planeGeo = new THREE.PlaneGeometry(IMAGE_SIZE, IMAGE_SIZE);
             textureLoader.load(data.url, (tex) => {
                 const planeMat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, side: THREE.DoubleSide });
                 const mesh = new THREE.Mesh(planeGeo, planeMat);
-                mesh.position.set(x, y, z);
-                mesh.lookAt(new THREE.Vector3(0, y, 0));
-                mesh.rotateY(Math.PI);
+                
+                const pos = new THREE.Vector3(x, y, z);
+                mesh.position.copy(pos);
+                // Make plane face exactly outward from the center
+                mesh.lookAt(pos.clone().multiplyScalar(2));
+                
                 group.add(mesh);
             });
 
@@ -103,22 +114,13 @@
                 side: THREE.DoubleSide 
             });
             const labelMesh = new THREE.Mesh(labelGeo, labelMat);
-            labelMesh.position.set(x, y - (IMAGE_SIZE / 2 + 0.6), z);
-            labelMesh.lookAt(new THREE.Vector3(0, y - (IMAGE_SIZE / 2 + 0.6), 0));
-            labelMesh.rotateY(Math.PI);
+            
+            const labelPos = new THREE.Vector3(x, y - (IMAGE_SIZE / 2 + 0.6), z);
+            labelMesh.position.copy(labelPos);
+            // Label faces exactly outward as well
+            labelMesh.lookAt(new THREE.Vector3(x * 2, labelPos.y, z * 2));
+            
             group.add(labelMesh);
-        });
-
-        // Simplified Drag
-        let lastX = 0;
-        container.addEventListener('mousedown', (e) => { isDragging = true; autoRotate = false; lastX = e.clientX; });
-        window.addEventListener('mouseup', () => { isDragging = false; });
-        window.addEventListener('mousemove', (e) => {
-            if (isDragging) {
-                const deltaX = e.clientX - lastX;
-                group.rotation.y += deltaX * 0.01;
-                lastX = e.clientX;
-            }
         });
 
         window.addEventListener('resize', () => {
@@ -135,7 +137,12 @@
 
     function animate() {
         requestAnimationFrame(animate);
-        if (autoRotate) group.rotation.y += 0.002;
+        if (controls) {
+            controls.update(); // OrbitControls handles auto-rotation and damping
+        } else {
+            // Fallback rotation if OrbitControls didn't load
+            group.rotation.y += 0.002;
+        }
         renderer.render(scene, camera);
     }
 
