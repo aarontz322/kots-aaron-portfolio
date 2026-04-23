@@ -1,4 +1,7 @@
 
+import * as THREE from 'https://unpkg.com/three@0.162.0/build/three.module.js';
+import { OrbitControls } from 'https://unpkg.com/three@0.162.0/examples/jsm/controls/OrbitControls.js';
+
 /* --- PC SPECS & PERIPHERALS ORBIT ENGINE --- */
 (function() {
     const imagesData = [
@@ -16,7 +19,7 @@
     const IMAGE_SIZE = 1.8;
     const ROTATION_SPEED_Y = 0.003;
 
-    let scene, camera, renderer, group;
+    let scene, camera, renderer, group, controls;
     const container = document.getElementById('specs-orbit-container');
 
     if (!container) return;
@@ -50,6 +53,14 @@
         renderer.setPixelRatio(window.devicePixelRatio);
         container.appendChild(renderer.domElement);
 
+        // --- Orbit Controls ---
+        controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.enableZoom = false; // Keep it focused
+        controls.autoRotate = true;
+        controls.autoRotateSpeed = 1.5;
+
         group = new THREE.Group();
         scene.add(group);
 
@@ -80,7 +91,7 @@
             const angle = (i / imagesData.length) * Math.PI * 2;
             const x = SPHERE_RADIUS * Math.cos(angle);
             const z = SPHERE_RADIUS * Math.sin(angle);
-            const y = (Math.random() - 0.5) * 4; // Slight Y variation for depth
+            const y = (Math.random() - 0.5) * 4; 
 
             const planeGeo = new THREE.PlaneGeometry(IMAGE_SIZE, IMAGE_SIZE);
             const planeMat = new THREE.MeshBasicMaterial({ 
@@ -99,7 +110,7 @@
             group.add(mesh);
 
             // Label
-            const labelGeo = new THREE.PlaneGeometry(2, 0.5);
+            const labelGeo = new THREE.PlaneGeometry(2.5, 0.6);
             const labelMat = new THREE.MeshBasicMaterial({ 
                 map: createLabelTexture(data.name),
                 transparent: true,
@@ -124,14 +135,14 @@
 
     function animate() {
         requestAnimationFrame(animate);
-        group.rotation.y += ROTATION_SPEED_Y;
+        controls.update(); // Required for damping and auto-rotate
         renderer.render(scene, camera);
     }
 
-    // Initialize when fonts are loaded for canvas text
-    if (document.fonts) {
-        document.fonts.ready.then(init);
+    // Initialize reliably
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        init();
     } else {
-        setTimeout(init, 1000);
+        document.addEventListener('DOMContentLoaded', init);
     }
 })();
