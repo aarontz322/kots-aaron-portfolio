@@ -13,7 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
         { title: "Me 1", url: "gallery/Me1.jpg" },
         { title: "Lysera 2", url: "gallery/Lysera2.jpg" },
         { title: "Lysera 3", url: "gallery/Lysera3.jpg" },
-        { title: "Group", url: "gallery/Group.jpg" }
+        { title: "Group", url: "gallery/Group.jpg" },
+        { title: "Champ 1", url: "gallery/Champ1.jpg" },
+        { title: "Champ 2", url: "gallery/Champ2.jpg" }
     ];
 
     let opened = 0;
