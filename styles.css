@@ -881,60 +881,13 @@ body {
 
 .gallery-section {
     padding: 100px 0;
-    background: #050505;
+    background: transparent; /* Allows global vines to show through */
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    /* cursor: none;  Removed to prevent interaction issues */
-}
-
-.gallery-scanner {
-    position: absolute;
-    pointer-events: none; /* Crucial: ensures clicks pass through to buttons */
-    z-index: 10; /* Lowered so it sits behind UI but above background */
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    mix-blend-mode: screen;
-}
-
-.scanner-crosshair, .scanner-line {
-    pointer-events: none;
-}
-
-.gallery-section:hover .gallery-scanner {
-    opacity: 1;
-}
-
-.scanner-crosshair {
-    width: 60px;
-    height: 60px;
-    border: 1px solid rgba(255, 70, 85, 0.4);
-    border-radius: 50%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.scanner-crosshair::before,
-.scanner-crosshair::after {
-    content: '';
-    position: absolute;
-    background: var(--val-red);
-}
-
-.scanner-crosshair::before { width: 100%; height: 1px; }
-.scanner-crosshair::after { width: 1px; height: 100%; }
-
-.scanner-line {
-    position: absolute;
-    width: 200vw;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--val-red), transparent);
-    left: -100vw;
-    opacity: 0.2;
+    z-index: 1; /* Sits above background but below HUD if any */
 }
 
 .gallery-wrapper {
@@ -946,9 +899,10 @@ body {
     margin: 50px auto;
     border-radius: 24px;
     overflow: hidden;
-    background: #0a0a0a;
+    background: #0a0a0a; /* Opaque background to hide vines behind it */
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 
                 0 0 0 1px rgba(255, 255, 255, 0.05);
+    z-index: 10; /* Ensures it stays in front of the vines */
 }
 
 .gallery-main {

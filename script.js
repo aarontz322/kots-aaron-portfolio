@@ -109,30 +109,4 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Failed to copy: ', err);
         }
     };
-
-    // --- Gallery Scanner Logic ---
-    const gallerySection = document.querySelector('.gallery-section');
-    const scanner = document.querySelector('.gallery-scanner');
-    
-    if (gallerySection && scanner) {
-        let mouseX = 0, mouseY = 0;
-        let currentX = 0, currentY = 0;
-
-        gallerySection.addEventListener('mousemove', (e) => {
-            const rect = gallerySection.getBoundingClientRect();
-            mouseX = e.clientX - rect.left;
-            mouseY = e.clientY - rect.top;
-        });
-
-        function animateScanner() {
-            // Add a tiny bit of easing for that high-end feel
-            currentX += (mouseX - currentX) * 0.2;
-            currentY += (mouseY - currentY) * 0.2;
-            
-            scanner.style.transform = `translate(${currentX - 30}px, ${currentY - 30}px)`;
-            requestAnimationFrame(animateScanner);
-        }
-        
-        animateScanner();
-    }
 });
