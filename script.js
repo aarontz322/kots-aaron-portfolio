@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isPlaying = false;
 
     if (musicToggle && bgAudio) {
-        bgAudio.volume = 0.4; // Set a reasonable default volume
+        bgAudio.volume = 0.25; // Lowered to 25% volume per user request
 
         const toggleMusic = () => {
             if (isPlaying) {
