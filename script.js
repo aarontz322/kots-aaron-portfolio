@@ -64,4 +64,35 @@ document.addEventListener('DOMContentLoaded', () => {
             card.classList.add('expanded');
         });
     });
+
+    // --- About Me Card Logic ---
+    function updateClock() {
+        const timeEl = document.getElementById('local-time');
+        if (!timeEl) return;
+        
+        const now = new Date();
+        const h = now.getHours();
+        const m = now.getMinutes().toString().padStart(2, "0");
+        const hour12 = ((h + 11) % 12) + 1;
+        const ampm = h >= 12 ? "PM" : "AM";
+        timeEl.innerText = `${hour12}:${m}${ampm}`;
+    }
+    
+    updateClock();
+    setInterval(updateClock, 60000);
+
+    window.copyEmail = async () => {
+        const email = "your.email@example.com"; // User should provide their actual email if different
+        try {
+            await navigator.clipboard.writeText(email);
+            const btn = document.querySelector('.btn-copy');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> COPIED';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+            }, 2000);
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+        }
+    };
 });
