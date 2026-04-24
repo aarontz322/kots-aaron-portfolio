@@ -59,4 +59,40 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Failed to copy: ', err);
         }
     };
+
+    // --- Background Music Logic ---
+    const musicToggle = document.getElementById('music-toggle');
+    const bgAudio = document.getElementById('bg-audio');
+    const musicText = musicToggle?.querySelector('.music-text');
+    let isPlaying = false;
+
+    if (musicToggle && bgAudio) {
+        bgAudio.volume = 0.4; // Set a reasonable default volume
+
+        const toggleMusic = () => {
+            if (isPlaying) {
+                bgAudio.pause();
+                musicToggle.classList.remove('playing');
+                musicToggle.classList.add('muted');
+                if (musicText) musicText.innerText = "SOUND OFF";
+            } else {
+                bgAudio.play().catch(e => console.log("Audio play blocked by browser"));
+                musicToggle.classList.add('playing');
+                musicToggle.classList.remove('muted');
+                if (musicText) musicText.innerText = "SOUND ON";
+            }
+            isPlaying = !isPlaying;
+        };
+
+        musicToggle.addEventListener('click', toggleMusic);
+
+        // Auto-play attempt on first interaction
+        const unlockAudio = () => {
+            if (!isPlaying) {
+                toggleMusic();
+            }
+            document.removeEventListener('click', unlockAudio);
+        };
+        document.addEventListener('click', unlockAudio);
+    }
 });
