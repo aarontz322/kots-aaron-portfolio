@@ -70,29 +70,38 @@ document.addEventListener('DOMContentLoaded', () => {
         const timeEl = document.getElementById('local-time');
         if (!timeEl) return;
         
+        // Force GMT+8 (Philippine Time)
         const now = new Date();
-        let hours = now.getHours();
-        const minutes = now.getMinutes().toString().padStart(2, "0");
+        const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+        const gmt8 = new Date(utc + (3600000 * 8));
+        
+        let hours = gmt8.getHours();
+        const minutes = gmt8.getMinutes().toString().padStart(2, "0");
         const ampm = hours >= 12 ? 'PM' : 'AM';
         
         hours = hours % 12;
-        hours = hours ? hours : 12; // the hour '0' should be '12'
+        hours = hours ? hours : 12;
         
         timeEl.innerText = `${hours}:${minutes}${ampm}`;
     }
     
-    // Initial call
     updateClock();
-    // Update every second for precision
     setInterval(updateClock, 1000);
 
     window.copyEmail = async () => {
-        const email = "your.email@example.com"; // User should provide their actual email if different
+        const email = "eyronggwp@gmail.com";
         try {
+            // Copy to clipboard
             await navigator.clipboard.writeText(email);
+            
+            // Show feedback
             const btn = document.querySelector('.btn-copy');
             const originalText = btn.innerHTML;
             btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> COPIED';
+            
+            // Open mailto
+            window.location.href = `mailto:${email}`;
+            
             setTimeout(() => {
                 btn.innerHTML = originalText;
             }, 2000);

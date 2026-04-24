@@ -1205,13 +1205,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #a3e635; /* Matching the lime from your reference image */
-    color: #000;
+    background: var(--val-red);
+    color: #fff;
     padding: 10px;
     border-radius: 12px;
     font-size: 0.8rem;
     font-weight: 700;
     margin-top: 10px;
+    box-shadow: 0 0 15px rgba(255, 70, 85, 0.4);
 }
 
 /* Right Side Text Content */
