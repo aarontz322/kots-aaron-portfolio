@@ -25,7 +25,7 @@
     function createLabelTexture(text) {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = 512;
+        canvas.width = 1024; // Expanded width so long text fits on one line
         canvas.height = 128;
         ctx.fillStyle = 'transparent';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -107,7 +107,7 @@
             });
 
             // Label
-            const labelGeo = new THREE.PlaneGeometry(3, 0.75);
+            const labelGeo = new THREE.PlaneGeometry(6, 0.75); // Match the new 8:1 canvas ratio
             const labelMat = new THREE.MeshBasicMaterial({ 
                 map: createLabelTexture(data.name), 
                 transparent: true, 
