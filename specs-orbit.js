@@ -7,7 +7,7 @@
         { name: "AMD RYZEN 7 7800X3D", url: "specs/7800x3d.png" },
         { name: "MADLIONS MAD60HE", url: "specs/keyboard.png" },
         { name: "MI 2K GAMING 27\" 180HZ", url: "specs/monitor.png" },
-        { name: "SUPERGLIDE PADS", url: "specs/glass-pads.png" },
+        { name: "PULSAR SUPERGLIDE GLASS MOUSEPAD V2 L", url: "specs/glass-pads.png" },
         { name: "TRUTHEAR x CRINACLE ZERO", url: "specs/iem.png" },
         { name: "XFX SWIFT RX 9060 XT", url: "specs/gpu.png" },
         { name: "PULSAR X2 CRAZYLIGHT", url: "specs/mouse.png" }
@@ -95,9 +95,37 @@
 
             const planeGeo = new THREE.PlaneGeometry(IMAGE_SIZE, IMAGE_SIZE);
             textureLoader.load(data.url, (tex) => {
-                const planeMat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, side: THREE.DoubleSide });
+                // Holographic Material
+                const planeMat = new THREE.MeshBasicMaterial({ 
+                    map: tex, 
+                    transparent: true, 
+                    opacity: 0.9,
+                    blending: THREE.AdditiveBlending, // Makes it glow like light
+                    side: THREE.DoubleSide 
+                });
                 const mesh = new THREE.Mesh(planeGeo, planeMat);
                 
+                // Holographic Tech Border
+                const borderGeo = new THREE.EdgesGeometry(new THREE.PlaneGeometry(IMAGE_SIZE + 0.15, IMAGE_SIZE + 0.15));
+                const borderMat = new THREE.LineBasicMaterial({ color: 0xff4655, transparent: true, opacity: 0.6 });
+                const border = new THREE.LineSegments(borderGeo, borderMat);
+                mesh.add(border);
+
+                // Corner Accents for UI feel
+                const cornerGeo = new THREE.BoxGeometry(0.1, 0.1, 0.1);
+                const cornerMat = new THREE.MeshBasicMaterial({ color: 0x00ffcc }); // Cyan accent
+                const corners = [
+                    [ (IMAGE_SIZE+0.15)/2,  (IMAGE_SIZE+0.15)/2],
+                    [-(IMAGE_SIZE+0.15)/2,  (IMAGE_SIZE+0.15)/2],
+                    [ (IMAGE_SIZE+0.15)/2, -(IMAGE_SIZE+0.15)/2],
+                    [-(IMAGE_SIZE+0.15)/2, -(IMAGE_SIZE+0.15)/2]
+                ];
+                corners.forEach(c => {
+                    const cMesh = new THREE.Mesh(cornerGeo, cornerMat);
+                    cMesh.position.set(c[0], c[1], 0);
+                    mesh.add(cMesh);
+                });
+
                 const pos = new THREE.Vector3(x, y, z);
                 mesh.position.copy(pos);
                 // Make plane face exactly outward from the center
