@@ -1,29 +1,4 @@
-function updateClock() {
-    const timeEl = document.getElementById('local-time');
-    if (!timeEl) return;
-    
-    // Force GMT+8 (Philippine Time)
-    const now = new Date();
-    const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-    const gmt8 = new Date(utc + (3600000 * 8));
-    
-    let hours = gmt8.getHours();
-    const minutes = gmt8.getMinutes().toString().padStart(2, "0");
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    
-    hours = hours % 12;
-    hours = hours ? hours : 12;
-    
-    timeEl.innerText = `${hours}:${minutes}${ampm}`;
-}
-
-// Start clock immediately and repeatedly
-updateClock();
-setInterval(updateClock, 1000);
-
 document.addEventListener('DOMContentLoaded', () => {
-    updateClock(); // Re-check once DOM is ready
-    
     // Glitch text effect on hover
     const glitchElements = document.querySelectorAll('.glitch, .logo');
     
