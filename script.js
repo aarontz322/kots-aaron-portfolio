@@ -109,4 +109,18 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Failed to copy: ', err);
         }
     };
+
+    // --- Gallery Scanner Logic ---
+    const gallerySection = document.querySelector('.gallery-section');
+    const scanner = document.querySelector('.gallery-scanner');
+    
+    if (gallerySection && scanner) {
+        gallerySection.addEventListener('mousemove', (e) => {
+            const rect = gallerySection.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            scanner.style.transform = `translate(${x - 30}px, ${y - 30}px)`;
+        });
+    }
 });
