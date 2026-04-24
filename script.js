@@ -91,20 +91,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.copyEmail = async () => {
         const email = "eyronggwp@gmail.com";
         try {
-            // Copy to clipboard
             await navigator.clipboard.writeText(email);
-            
-            // Show feedback
             const btn = document.querySelector('.btn-copy');
             const originalText = btn.innerHTML;
             btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> COPIED';
-            
-            // Open mailto
             window.location.href = `mailto:${email}`;
-            
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-            }, 2000);
+            setTimeout(() => { btn.innerHTML = originalText; }, 2000);
         } catch (err) {
             console.error('Failed to copy: ', err);
         }
