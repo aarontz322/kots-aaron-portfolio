@@ -648,6 +648,25 @@ body {
     text-shadow: 0 0 5px var(--val-red);
 }
 
+.squad-disclaimer {
+    margin-top: 3rem;
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.4);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    letter-spacing: 1px;
+}
+
+.squad-disclaimer .warning-tag {
+    color: var(--val-red);
+    font-weight: 700;
+    margin-right: 5px;
+}
+
 /* Media Queries */
 @media (max-width: 768px) {
     .hero {
