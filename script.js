@@ -115,12 +115,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const scanner = document.querySelector('.gallery-scanner');
     
     if (gallerySection && scanner) {
+        let mouseX = 0, mouseY = 0;
+        let currentX = 0, currentY = 0;
+
         gallerySection.addEventListener('mousemove', (e) => {
             const rect = gallerySection.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            scanner.style.transform = `translate(${x - 30}px, ${y - 30}px)`;
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
         });
+
+        function animateScanner() {
+            // Add a tiny bit of easing for that high-end feel
+            currentX += (mouseX - currentX) * 0.2;
+            currentY += (mouseY - currentY) * 0.2;
+            
+            scanner.style.transform = `translate(${currentX - 30}px, ${currentY - 30}px)`;
+            requestAnimationFrame(animateScanner);
+        }
+        
+        animateScanner();
     }
 });

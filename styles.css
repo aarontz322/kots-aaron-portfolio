@@ -887,16 +887,20 @@ body {
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    cursor: none; /* Hide default cursor to use custom one */
+    /* cursor: none;  Removed to prevent interaction issues */
 }
 
 .gallery-scanner {
     position: absolute;
-    pointer-events: none;
-    z-index: 1000;
+    pointer-events: none; /* Crucial: ensures clicks pass through to buttons */
+    z-index: 10; /* Lowered so it sits behind UI but above background */
     opacity: 0;
     transition: opacity 0.3s ease;
     mix-blend-mode: screen;
+}
+
+.scanner-crosshair, .scanner-line {
+    pointer-events: none;
 }
 
 .gallery-section:hover .gallery-scanner {
