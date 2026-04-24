@@ -71,15 +71,20 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!timeEl) return;
         
         const now = new Date();
-        const h = now.getHours();
-        const m = now.getMinutes().toString().padStart(2, "0");
-        const hour12 = ((h + 11) % 12) + 1;
-        const ampm = h >= 12 ? "PM" : "AM";
-        timeEl.innerText = `${hour12}:${m}${ampm}`;
+        let hours = now.getHours();
+        const minutes = now.getMinutes().toString().padStart(2, "0");
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        
+        timeEl.innerText = `${hours}:${minutes}${ampm}`;
     }
     
+    // Initial call
     updateClock();
-    setInterval(updateClock, 60000);
+    // Update every second for precision
+    setInterval(updateClock, 1000);
 
     window.copyEmail = async () => {
         const email = "your.email@example.com"; // User should provide their actual email if different

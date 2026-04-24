@@ -55,50 +55,57 @@
     
     <section id="about" class="about-section">
         <div class="about-container">
-            <div class="about-card-wrapper">
-                <div class="about-glow"></div>
-                
-                <div class="about-card">
-                    <div class="card-top">
-                        <div class="status-indicator">
-                            <span class="status-dot pulse"></span>
-                            <span class="status-text">AVAILABLE FOR WORK</span>
+            <div class="about-flex-layout">
+                <!-- Left: The Card -->
+                <div class="about-card-wrapper">
+                    <div class="about-glow"></div>
+                    <div class="about-card">
+                        <div class="card-top">
+                            <div class="status-indicator">
+                                <span class="status-dot pulse"></span>
+                                <span class="status-text">Available for work</span>
+                            </div>
+                            <div class="clock-display">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 5px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <span id="local-time">00:00 AM</span>
+                            </div>
                         </div>
-                        <div class="clock-display">
-                            <i class="icon-clock"></i>
-                            <span id="local-time">--:-- --</span>
-                        </div>
-                    </div>
 
-                    <div class="profile-main">
-                        <div class="avatar-container">
-                            <img src="about/about-me.jpg" alt="Kots Aaron">
+                        <div class="profile-main">
+                            <div class="avatar-container">
+                                <img src="about/about-me.jpg" alt="Kots Aaron">
+                            </div>
+                            <div class="profile-details">
+                                <h3>Kots Aaron</h3>
+                                <p class="role">Lead Tactical Coach / Analyst</p>
+                            </div>
                         </div>
-                        <div class="profile-details">
-                            <h3>Kots Aaron</h3>
-                            <p class="role">Lead Tactical Coach / Analyst</p>
+
+                        <div class="card-actions">
+                            <a href="https://discord.com/users/kotsaaron" target="_blank" class="btn-card">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></path></svg>
+                                Hire Me
+                            </a>
+                            <button class="btn-card btn-copy" onclick="copyEmail()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                Copy Email
+                            </button>
+                        </div>
+                        
+                        <div class="card-footer-glow">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 5px;"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></path></svg>
+                            Currently High on Strategy
                         </div>
                     </div>
+                </div>
 
-                    <div class="bio-content">
-                        <p>My name is Aaron from the Philippines. I have been playing Valorant since 2023. In the early days, I relied purely on mechanical aim to carry games. However, now in my 30s, I have transitioned into the <strong>tactical depth</strong> of the game.</p>
-                        <p>I trust my teammates more and rely on strategic positioning because peak reflexes aren't everything in an elite-level match. I love coaching to leave a mark in the scene and help others who need proper guidance. Giving back to the community has helped me socially, emotionally, and mentally, and I'm here to share that passion.</p>
-                    </div>
-
-                    <div class="card-actions">
-                        <a href="https://discord.com/users/kotsaaron" target="_blank" class="btn-card">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></path></svg>
-                            HIRE ME
-                        </a>
-                        <button class="btn-card btn-copy" onclick="copyEmail()">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                            COPY EMAIL
-                        </button>
-                    </div>
-                    
-                    <div class="card-footer-glow">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></path></svg>
-                        Currently High on Strategy
+                <!-- Right: The Introduction Text -->
+                <div class="about-text-content">
+                    <h2 class="side-title">THE TACTICAL SHIFT</h2>
+                    <div class="bio-paragraphs">
+                        <p>My name is <strong>Aaron</strong>, hailing from the Philippines. I've been immersed in the world of Valorant since 2023. In the beginning, I relied heavily on raw mechanical aim to dominate my matches.</p>
+                        <p>Now in my 30s, I've undergone a significant evolution. I've shifted my focus to the <strong>tactical mastery</strong> of the game. I trust my teammates implicitly and prioritize strategic positioning over flick shots, recognizing that while reflexes might fade, game sense only sharpens with time.</p>
+                        <p>I am passionate about coaching to leave a lasting impact on the scene. Helping others find their path through proper guidance is my way of giving back to a community that has supported me socially, emotionally, and mentally. I'm always analyzing the meta and looking forward to being the strategic edge for your Org or team.</p>
                     </div>
                 </div>
             </div>
