@@ -113,7 +113,7 @@
 
                 // Corner Accents for UI feel
                 const cornerGeo = new THREE.BoxGeometry(0.1, 0.1, 0.1);
-                const cornerMat = new THREE.MeshBasicMaterial({ color: 0x00ffcc }); // Cyan accent
+                const cornerMat = new THREE.MeshBasicMaterial({ color: 0xffffff }); // Pure white accent
                 const corners = [
                     [ (IMAGE_SIZE+0.15)/2,  (IMAGE_SIZE+0.15)/2],
                     [-(IMAGE_SIZE+0.15)/2,  (IMAGE_SIZE+0.15)/2],

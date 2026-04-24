@@ -554,6 +554,10 @@ body {
     gap: 2rem;
     width: max-content;
     animation: x-slider 60s linear infinite;
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 }
 
 .testimonial-track:hover {
@@ -561,8 +565,8 @@ body {
 }
 
 @keyframes x-slider {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
 }
 
 .testimonial-card {
