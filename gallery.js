@@ -188,5 +188,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- TOUCH SWIPE SUPPORT ---
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    if (container) {
+        container.style.pointerEvents = 'auto'; // Ensure it catches touch
+        container.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        container.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleGesture();
+        }, { passive: true });
+    }
+
+    function handleGesture() {
+        if (disabled) return;
+        const threshold = 50;
+        if (touchEndX < touchStartX - threshold) {
+            // Swipe Left -> Next
+            updateGallery((opened + 1) % total, false, 1);
+        } else if (touchEndX > touchStartX + threshold) {
+            // Swipe Right -> Prev
+            updateGallery((opened - 1 + total) % total, false, -1);
+        }
+    }
+
     init();
 });

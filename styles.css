@@ -669,33 +669,146 @@ body {
 
 /* Media Queries */
 @media (max-width: 768px) {
-    .hero {
-        flex-direction: column;
-        padding-top: 5rem;
+    .glitch-nav {
+        padding: 1rem 3% !important;
+        flex-direction: column !important;
+        height: auto !important;
+        gap: 0.5rem !important;
+        align-items: center !important;
     }
 
-    .hero-title {
-        font-size: 5rem;
+    #particle-canvas {
+        height: 60px !important; 
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        order: 2 !important; /* Force it below the logo */
     }
 
-    .hero-visual {
-        min-height: 300px;
-        width: 100%;
-        margin-top: 3rem;
+    .logo {
+        font-size: 2rem !important;
+        margin-bottom: 0.5rem !important;
+        order: 1 !important;
     }
 
     .nav-links {
-        display: none;
+        display: flex !important;
+        order: 3 !important;
+        margin-top: 0.5rem !important;
+    }
+
+    .nav-links a {
+        font-size: 0.7rem;
+    }
+
+    .hero {
+        flex-direction: column !important;
+        padding-top: 2rem !important;
+        min-height: auto !important;
+        padding-bottom: 4rem !important;
+    }
+
+    .hero-title {
+        font-size: 3.5rem !important;
+        line-height: 1 !important;
+        text-align: center !important;
+    }
+
+    .hero-visual {
+        min-height: 250px !important;
+        width: 100% !important;
+        margin-top: 2rem !important;
+    }
+
+    .hero-desc {
+        text-align: center !important;
+        border-left: none !important;
+        border-top: 4px solid var(--val-red) !important;
+        padding-left: 0 !important;
+        padding-top: 1rem !important;
+        margin: 0 auto 3rem !important;
+    }
+
+    .about-card {
+        padding: 20px;
+    }
+
+    .avatar-container {
+        width: 180px;
+        height: 180px;
+    }
+
+    .gallery-wrapper {
+        margin: 20px auto;
+        width: 95vmin;
+        height: 95vmin;
+    }
+
+    .gallery-section {
+        padding: 2rem 0;
+    }
+
+    .champ-card {
+        padding: 1.5rem;
+    }
+
+    .champ-stats {
+        gap: 1.5rem;
+    }
+
+    .champ-stats .value {
+        font-size: 1.5rem;
+    }
+
+    .gallery-nav-btn {
+        width: 45px;
+        height: 45px;
+    }
+
+    .gallery-nav-btn.prev { transform: translateX(10px); }
+    .gallery-nav-btn.next { transform: translateX(-10px); }
+
+    .gallery-nav-btn.prev:hover { transform: translateX(10px) scale(1.05); }
+    .gallery-nav-btn.next:hover { transform: translateX(-10px) scale(1.05); }
+
+    .section-title {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    .about-section, .championships-section, .achievements-section, .squad-section, .services-section, .gallery-section, .testimonials-section, .specs-section {
+        padding: 3rem 5%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .achievement-list {
+        width: 100%;
     }
 
     .achievement-item {
         grid-template-columns: 1fr;
         gap: 0.5rem;
-        text-align: left;
+        text-align: center;
     }
 
     .ach-result {
-        text-align: left;
+        text-align: center;
+    }
+
+    .service-grid {
+        justify-items: center;
+    }
+
+    .service-card {
+        text-align: center;
+    }
+
+    .card-header {
+        justify-content: center;
     }
 }
 
@@ -1262,5 +1375,6 @@ body {
 @media (max-width: 768px) {
     .side-title {
         font-size: 3rem;
+        text-align: center;
     }
 }

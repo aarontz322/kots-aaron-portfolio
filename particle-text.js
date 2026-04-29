@@ -153,9 +153,8 @@ class ParticleEffect {
   }
 
   resize() {
-    const parent = this.canvas.parentElement;
-    this.canvas.width = parent.offsetWidth * 0.95;
-    this.canvas.height = 150;
+    this.canvas.width = this.canvas.clientWidth;
+    this.canvas.height = this.canvas.clientHeight;
   }
 
   generateRandomPos(x, y, mag) {
@@ -185,8 +184,11 @@ class ParticleEffect {
     offscreenCanvas.height = this.canvas.height;
     const offCtx = offscreenCanvas.getContext('2d');
 
+    // Responsive font size: Even more conservative for mobile to avoid clipping
+    const isMobile = window.innerWidth <= 768;
+    const fontSize = isMobile ? Math.min(this.canvas.width / 14, 32) : Math.min(this.canvas.width / 10, 80);
     offCtx.fillStyle = 'white';
-    offCtx.font = '800 80px Rajdhani, sans-serif'; // BOLDER: Weight 800 for maximum impact
+    offCtx.font = `800 ${fontSize}px Rajdhani, sans-serif`;
     offCtx.textAlign = 'center';
     offCtx.textBaseline = 'middle';
     offCtx.fillText(word, this.canvas.width / 2, this.canvas.height / 2);

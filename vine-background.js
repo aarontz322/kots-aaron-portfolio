@@ -46,10 +46,20 @@ class LivingVine {
     animate() {
         if (this.destroyed) return;
         
+        // Detect touch device
+        const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        
         // Use a slightly transparent black to create a trail effect
-        // Matching the theme's deep background but with a bit of fade
-        this.ctx.fillStyle = "rgba(15, 25, 35, 0.15)";
+        // MUCH Faster fade on mobile to keep the screen clear
+        const fadeOpacity = isTouch ? 0.8 : 0.15;
+        this.ctx.fillStyle = `rgba(15, 25, 35, ${fadeOpacity})`;
         this.ctx.fillRect(0, 0, this.width, this.height);
+        
+        // Shorten path history on touch to prevent long zig-zags during scrolling
+        const maxHistory = isTouch ? 2 : 100;
+        if (this.pathHistory.length > maxHistory) {
+            this.pathHistory.shift();
+        }
 
         if (this.pathHistory.length > 1) {
             this.ctx.beginPath();
